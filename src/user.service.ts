@@ -2,20 +2,24 @@ import { Body, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { brotliDecompressSync } from "zlib";
+import { CreateUserDto, Login } from './user.dto';
 import { user } from "./user.entity";
-import { Signup } from './user.model';
+ 
+ 
 
 @Injectable()
-export class methods{
+export class UserServices{
 
-    constructor( @InjectRepository(user) private userepo : Repository<user>  ){
-    }
+    constructor(@InjectRepository(user) private userepo: Repository<user>){}
 
-async signup(@Body()  user:Signup) {
-const new_user = this.userepo.save(user);
-return new_user;
+ create( createuserDto: CreateUserDto) {
 
+    const new_user = this.userepo
+    new_user.save(createuserDto);
+    
 }
+
+
 
 
 

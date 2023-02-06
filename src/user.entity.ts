@@ -1,7 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { CreateUserDto } from "./user.dto";
+ 
 
 @Entity()
 export class user{
+  
+ 
 
     @PrimaryGeneratedColumn()
     id : string

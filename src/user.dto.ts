@@ -1,47 +1,82 @@
-export class Signup{
+import { ApiProperty } from "@nestjs/swagger"
+import { IsEmail, IsNotEmpty } from "class-validator"
 
-user_name : string
-
-user_email: string
-
-password : string
-
-confirm_pass : string
+export class CreateUserDto{
 
 
 
-}
 
+    @ApiProperty()
+    @IsNotEmpty()
+    user_name : string
 
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsEmail()
+    user_email: string
 
-export class Login{
+    @ApiProperty()
+    @IsNotEmpty()
+    password : string
 
-user_email : string
+    @ApiProperty()
+    @IsNotEmpty()
+    confirm_pass : string
+    
+    
+    
+    }
+    
+    
+    
+    export class Login{
 
-user_pass :  string
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsEmail()
+    email : string
 
+    @ApiProperty()
+    @IsNotEmpty()
+    pass :  string
+    
+    
+    }
+    
+    export class ResetPass{
 
-}
+    @ApiProperty()
+    @IsNotEmpty()
+    user_pass : string
 
-export class ResetPass{
+    @ApiProperty()
+    @IsNotEmpty()
+    new_pass : string
 
-user_pass : string
+    @ApiProperty()
+    @IsNotEmpty()
+    confirm_pass: string
+    
+    
+    }
+    
+    export class forget {
 
-new_pass : string
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsEmail()
+    user_email : string
 
-confirm_pass: string
+    @ApiProperty()
+    @IsNotEmpty()
+    otp : string
 
+    @ApiProperty()
+    @IsNotEmpty()
+    new_pass: string
 
-}
-
-export class forget {
-
-user_email : string
-
-otp : string
-
-new_pass: string
-
-confirm_pass: string
-
-}
+    @ApiProperty()
+    @IsNotEmpty()
+    confirm_pass: string
+    
+    }
