@@ -9,8 +9,6 @@ import { Forgot, Login, Signup, verifyEmail } from './user.model';
 export class UserServices {
   constructor(@InjectRepository(user) private userepo: Repository<user>) {}
 
-
-
   //Signup Method
   SignUp(data: Signup) {
     const saltOrRounds = 10;
@@ -28,9 +26,6 @@ export class UserServices {
     return otp;
   }
 
-
-
-
   // Email verificatio method
   verification(verify: verifyEmail) {
     const found = this.userepo.findOneBy({
@@ -44,10 +39,6 @@ export class UserServices {
       return 'user not found';
     }
   }
-
-
-
-
 
   // Login Method
   LoginUser(login: Login) {
@@ -65,24 +56,21 @@ export class UserServices {
     }
   }
 
-
-
-
-
   // forgot password
-  
-   Forgotpassword(forgot: Forgot){
-   
-    const found = this.userepo.findOneBy({user_Email: forgot.email, otp: forgot.otp})
 
-    if (found){
-        const user = this.userepo.update({user_Email: forgot.email},{
-            user_password: forgot.newpass})
-        }
+  Forgotpassword(forgot: Forgot) {
+    const found = this.userepo.findOneBy({
+      user_Email: forgot.email,
+      otp: forgot.otp,
+    });
+
+    if (found) {
+      const user = this.userepo.update(
+        { user_Email: forgot.email },
+        {
+          user_password: forgot.newpass,
+        },
+      );
     }
-   
-
-   }
-
-
-
+  }
+}
