@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger/dist/decorators';
 import { IsNotEmpty, IsString } from 'class-validator';
 import { IsEmail } from 'class-validator';
-import { ISignup, IVerification } from './user.dto';
+import { IForgotPassword, ILogin, ISignup, IVerification } from './user.dto';
 
 
 
@@ -32,4 +32,35 @@ export class verifyEmail implements IVerification{
     @IsNotEmpty()
     @ApiProperty()
     otp: number;
+}
+
+
+export class Login implements ILogin{
+
+    @ApiProperty({default: 'Umar@gmail.com'})
+    @IsNotEmpty()
+    @IsEmail()
+    email: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    password: string;
+     
+}
+
+
+export class Forgot implements IForgotPassword{
+  
+
+    @ApiProperty({default: 'Umar@gmail.com'})
+    @IsNotEmpty()
+    @IsEmail()
+    email: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    otp: number;
+    @ApiProperty()
+    @IsNotEmpty()
+    newpass: string;
+   
+     
 }
