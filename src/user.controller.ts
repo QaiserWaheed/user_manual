@@ -1,24 +1,29 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { user } from './user.entity';
+ 
+ 
+import { Signup, verifyEmail } from './user.model';
 
 import { UserServices } from './user.service';
 
 @Controller('user')
 export class UserController {
 
-constructor( private USER : UserServices  ){
+constructor( private userService : UserServices  ){
 
 }
 
 @Post ('Signup')
-async Signup(@Body() newuser:user) {
+async Signup(@Body() newuser:Signup) {
 
+return this.userService.SignUp(newuser)
 
-    
 }
 
+@Post('/email-verification')
+
+async verification (@Body() verify: verifyEmail){
+return this.userService.verification(verify)
+}
 
 
 }

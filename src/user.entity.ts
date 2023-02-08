@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-import { CreateUserDto } from "./user.dto";
+
  
 
 @Entity()
@@ -19,7 +19,9 @@ export class user{
     @Column()
     user_password : string
 
-
+    @Column({ nullable: true })
+    otp : number
+    
 
 
 }
